@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/birusa">
+
+    <EditText
+        android:id="@+id/etEditNoteTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/yellow"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Введите название рецепта"
+        android:inputType="textMultiLine|textPersonName"
+        android:padding="8dp"
+        android:shadowColor="#040303"
+        android:textColor="#737272"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/purple_500"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/etEditNoteContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:backgroundTint="@color/yellow"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Напишите здесь свой рецепт"
+        android:inputType="textMultiLine|textPersonName"
+        android:padding="8dp"
+        android:shadowColor="#040303"
+        android:textColor="#737272"
+        android:textColorHint="@color/white"
+        android:textColorLink="@color/purple_500"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/etEditNoteTitle"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/etEditNoteTitle"
+        app:layout_constraintTop_toBottomOf="@+id/cvEditNote" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabEditNoteSaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:foreground="@android:drawable/ic_menu_save"
+        android:foregroundGravity="center"
+        app:backgroundTint="@color/birusa"
+        app:layout_constraintBottom_toBottomOf="@+id/etEditNoteContent"
+        app:layout_constraintEnd_toEndOf="@+id/etEditNoteContent"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddGalleryEditNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/birusa"
+        android:clickable="true"
+        android:foreground="@android:drawable/ic_menu_gallery"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/fabEditNoteSaved"
+        app:layout_constraintEnd_toEndOf="@+id/etEditNoteContent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvEditNote"
+        android:layout_width="0dp"
+        android:layout_height="210dp"
+        android:layout_margin="4dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/yellow"
+        android:padding="8dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/etEditNoteTitle"
+        app:layout_constraintStart_toStartOf="@+id/etEditNoteTitle"
+        app:layout_constraintTop_toBottomOf="@+id/etEditNoteTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivEditNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:backgroundTint="#A58F6F"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/ivEditEditNote"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/yellow"
+                app:layout_constraintEnd_toEndOf="@+id/ivEditNote"
+                app:layout_constraintTop_toTopOf="@+id/ivEditNote"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+
+            <ImageView
+                android:id="@+id/ivDeleteEditNote"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/ivEditNote"
+                app:layout_constraintEnd_toEndOf="@+id/ivEditNote"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
