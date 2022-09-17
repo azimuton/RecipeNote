@@ -1,14 +1,14 @@
 package com.azimuton.recipenote.data.repository
 
+import com.azimuton.recipenote.data.mappers.NoteListMapper
 import com.azimuton.recipenote.data.mappers.NoteMapper
 import com.azimuton.recipenote.data.storage.NoteStorage
-import com.azimuton.recipenote.data.storage.models.NoteEntity
 import com.azimuton.recipenote.domain.models.Note
 import com.azimuton.recipenote.domain.repository.SaveDataNoteRepository
 
 class SaveDataNoteRepositoryImpl(private val noteStorage: NoteStorage): SaveDataNoteRepository {
-    override fun getAll(): List<NoteEntity> {
-        return noteStorage.getAll()
+    override fun getAll(): List<Note> {
+        return  NoteListMapper().mapFromEntity(noteStorage.getAll())
     }
 
     override fun delImage() {
@@ -27,9 +27,9 @@ class SaveDataNoteRepositoryImpl(private val noteStorage: NoteStorage): SaveData
         return noteStorage.updateNote(noteEntity = NoteMapper().mapToEntity(note))
     }
 
-    override fun getNoteById(id: Int): NoteEntity? {
-        return  noteStorage.getNoteById(id = id)
-    }
+//    override fun getNoteById(id:Int): Note? {
+//        return   NoteMapper().mapFromEntity()
+//    }
 
 
 }

@@ -15,5 +15,5 @@ interface NoteStorage {
 
     fun updateNote(noteEntity: NoteEntity)
 
-    fun getNoteById(id: Int): NoteEntity?
+//    fun getNoteById(id: Int): NoteEntity?
 }

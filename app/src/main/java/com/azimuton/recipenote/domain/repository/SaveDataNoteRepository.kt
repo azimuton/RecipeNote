@@ -1,10 +1,9 @@
 package com.azimuton.recipenote.domain.repository
 
-import com.azimuton.recipenote.data.storage.models.NoteEntity
 import com.azimuton.recipenote.domain.models.Note
 
 interface SaveDataNoteRepository {
-    fun getAll(): List<NoteEntity>
+    fun getAll(): List<Note>
 
     fun delImage()
 
@@ -14,5 +13,5 @@ interface SaveDataNoteRepository {
 
     fun updateNote(note: Note)
 
-    fun getNoteById(id: Int): NoteEntity?
+//    fun getNoteById(id: Int): Note?
 }

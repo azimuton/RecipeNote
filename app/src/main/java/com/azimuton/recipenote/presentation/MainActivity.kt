@@ -7,16 +7,18 @@ import com.azimuton.recipenote.R
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initAdMob()
-        (application as AppMainState).showAdIfAvailable(this){
-
-        }
+//        (application as AppMainState).showAdIfAvailable(this){
+//
+//        }
         Glide.with(this)
             .asGif()
             .load(R.drawable.vegetables)

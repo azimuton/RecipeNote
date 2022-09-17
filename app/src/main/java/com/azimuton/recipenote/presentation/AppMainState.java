@@ -22,6 +22,9 @@ import com.google.android.gms.ads.appopen.AppOpenAd;
 
 import java.util.Date;
 
+import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.HiltAndroidApp;
+
 
 public class AppMainState extends Application implements Application.ActivityLifecycleCallbacks, LifecycleObserver {
 

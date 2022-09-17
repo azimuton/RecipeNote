@@ -21,6 +21,6 @@ interface NoteDao {
     @Update
     fun updateNote(noteEntity: NoteEntity)
 
-    @Query("SELECT * FROM NoteEntity WHERE dbnoteEntityid = :id")
-    fun getNoteById(id: Int): NoteEntity?
+//    @Query("SELECT * FROM NoteEntity WHERE dbnoteEntityid = :id")
+//    fun getNoteById(id: Int): NoteEntity?
 }

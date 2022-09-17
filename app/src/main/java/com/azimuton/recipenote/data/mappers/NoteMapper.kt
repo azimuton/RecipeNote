@@ -7,12 +7,14 @@ class NoteMapper : Mapper<NoteEntity, Note> {
     override fun mapFromEntity(type: NoteEntity): Note {
         return Note(dbnotetitle = type.dbnoteEntitytitle,
             dbnotecontent = type.dbnoteEntitycontent,
-            dbnoteimage = type.dbnoteEntityimage, dbnoteid = type.dbnoteEntityid)
+            dbnoteimage = type.dbnoteEntityimage)
+//        dbnoteid = type.dbnoteEntityid)
     }
 
     override fun mapToEntity(type: Note): NoteEntity {
         return NoteEntity(dbnoteEntitytitle = type.dbnotetitle,
             dbnoteEntitycontent = type.dbnotecontent,
-            dbnoteEntityimage = type.dbnoteimage, dbnoteEntityid = type.dbnoteid)
+            dbnoteEntityimage = type.dbnoteimage)
+        //dbnoteEntityid = type.dbnoteid)
     }
 }

@@ -26,7 +26,7 @@ class NoteStorageRoomImpl(private val noteDao: NoteDao): NoteStorage {
         noteDao.updateNote(noteEntity = noteEntity)
     }
 
-    override fun getNoteById(id: Int): NoteEntity? {
-       return noteDao.getNoteById(id = id)
-    }
+//    override fun getNoteById(id: Int): NoteEntity? {
+//       return noteDao.getNoteById(id = id)
+//    }
 }
