@@ -18,7 +18,7 @@ import com.azimuton.recipenote.presentation.utils.MyIntentConstance
 import kotlinx.android.synthetic.main.item_note.view.*
 
 
-class NoteAdapter(private val context : Context, private val noteList : List<NoteEntity>, private val callback: NoteActivity):
+class NoteAdapter(private val context : Context, private val noteList : List<Note>, private val callback: NoteActivity):
     RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
     class ViewHolder(view: View,  contextV: Context) : RecyclerView.ViewHolder(view){
 
@@ -33,12 +33,13 @@ class NoteAdapter(private val context : Context, private val noteList : List<Not
             deleteItem = itemView.ivItemNoteDelete
         }
 
-        fun setData(item : NoteEntity){
+        fun setData(item : Note){
             itemView.setOnClickListener {
                 val intent = Intent(context, EditNoteActivity :: class.java).apply {
-                    putExtra(MyIntentConstance.I_NAME_KEY, item.dbnoteEntitytitle)
-                    putExtra(MyIntentConstance.I_CONTENT_KEY, item.dbnoteEntitycontent)
-                    putExtra(MyIntentConstance.I_IMAGE_KEY, item.dbnoteEntityimage)
+                    putExtra(MyIntentConstance.I_NAME_KEY, item.dbnotetitle)
+                    putExtra(MyIntentConstance.I_CONTENT_KEY, item.dbnotecontent)
+                    putExtra(MyIntentConstance.I_IMAGE_KEY, item.dbnoteimage)
+                    putExtra(MyIntentConstance.I_ID_KEY, item.dbnoteid)
                 }
                context.startActivity(intent)
             }
@@ -58,8 +59,8 @@ class NoteAdapter(private val context : Context, private val noteList : List<Not
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setData(noteList[position])
-        holder.title?.text = noteList[position].dbnoteEntitytitle
-        holder.image?.setImageURI(noteList[position].dbnoteEntityimage.toUri())
+        holder.title?.text = noteList[position].dbnotetitle
+        holder.image?.setImageURI(noteList[position].dbnoteimage.toUri())
         holder.deleteItem?.setOnClickListener {
             callback.deleteItem(position)
         }

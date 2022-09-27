@@ -5,16 +5,16 @@ import com.azimuton.recipenote.domain.models.Note
 
 class NoteMapper : Mapper<NoteEntity, Note> {
     override fun mapFromEntity(type: NoteEntity): Note {
-        return Note(dbnotetitle = type.dbnoteEntitytitle,
+        return Note( dbnoteid = type.dbnoteEntityid,
+            dbnotetitle = type.dbnoteEntitytitle,
             dbnotecontent = type.dbnoteEntitycontent,
-            dbnoteimage = type.dbnoteEntityimage)
-//        dbnoteid = type.dbnoteEntityid)
+            dbnoteimage = type.dbnoteEntityimage,)
     }
 
     override fun mapToEntity(type: Note): NoteEntity {
-        return NoteEntity(dbnoteEntitytitle = type.dbnotetitle,
+        return NoteEntity(dbnoteEntityid = type.dbnoteid,
+            dbnoteEntitytitle = type.dbnotetitle,
             dbnoteEntitycontent = type.dbnotecontent,
-            dbnoteEntityimage = type.dbnoteimage)
-        //dbnoteEntityid = type.dbnoteid)
+            dbnoteEntityimage = type.dbnoteimage,)
     }
 }

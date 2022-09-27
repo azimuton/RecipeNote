@@ -11,10 +11,10 @@ class NoteListMapper : Mapper<List<NoteEntity>, List<Note>> {
         type.forEach { noteEntity ->
             listNote.add(
                 Note(
+                    dbnoteid = noteEntity.dbnoteEntityid,
                     dbnotetitle = noteEntity.dbnoteEntitytitle,
                     dbnotecontent = noteEntity.dbnoteEntitycontent,
-                    dbnoteimage = noteEntity.dbnoteEntityimage
-//                    dbnoteid = noteEntity.dbnoteEntityid
+                    dbnoteimage = noteEntity.dbnoteEntityimage,
                 )
             )
         }
@@ -28,10 +28,10 @@ class NoteListMapper : Mapper<List<NoteEntity>, List<Note>> {
         type.forEach { note ->
             listNote.add(
                 NoteEntity(
+                    dbnoteEntityid = note.dbnoteid,
                     dbnoteEntitytitle = note.dbnotetitle,
                     dbnoteEntitycontent = note.dbnotecontent,
-                    dbnoteEntityimage = note.dbnoteimage
-                    //dbnoteEntityid = note.dbnoteid
+                    dbnoteEntityimage = note.dbnoteimage,
                 )
             )
         }

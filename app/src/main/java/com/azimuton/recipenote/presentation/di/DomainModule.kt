@@ -32,4 +32,8 @@ object DomainModule {
     fun provideNoteUpdateUseCase(noteRepository: SaveDataNoteRepository):NoteUpdateUseCase{
         return  NoteUpdateUseCase(saveDataNoteRepository = noteRepository)
     }
+    @Provides
+    fun provideGetNoteByIdUseCase(noteRepository: SaveDataNoteRepository):NoteGetNoteByIdUseCase{
+        return  NoteGetNoteByIdUseCase(saveDataNoteRepository = noteRepository)
+    }
 }

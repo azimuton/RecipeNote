@@ -4,9 +4,12 @@ import com.azimuton.recipenote.data.storage.NoteStorage
 import com.azimuton.recipenote.data.storage.models.NoteEntity
 import com.azimuton.recipenote.data.storage.room.dao.NoteDao
 import com.azimuton.recipenote.domain.models.Note
+import com.google.android.gms.common.api.Response
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 
 class NoteStorageRoomImpl(private val noteDao: NoteDao): NoteStorage {
-    override fun getAll(): List<NoteEntity> {
+    override  fun getAll(): List<NoteEntity>{
         return  noteDao.getAll()
     }
 
@@ -26,7 +29,7 @@ class NoteStorageRoomImpl(private val noteDao: NoteDao): NoteStorage {
         noteDao.updateNote(noteEntity = noteEntity)
     }
 
-//    override fun getNoteById(id: Int): NoteEntity? {
-//       return noteDao.getNoteById(id = id)
-//    }
+    override fun getNoteById(id: Int): NoteEntity? {
+       return noteDao.getNoteById(id = id)
+    }
 }

@@ -27,9 +27,9 @@ class SaveDataNoteRepositoryImpl(private val noteStorage: NoteStorage): SaveData
         return noteStorage.updateNote(noteEntity = NoteMapper().mapToEntity(note))
     }
 
-//    override fun getNoteById(id:Int): Note? {
-//        return   NoteMapper().mapFromEntity()
-//    }
+    override fun getNoteById(id:Int): Note? {
+        return noteStorage.getNoteById(id)?.let { NoteMapper().mapFromEntity(it) }
+    }
 
 
 }

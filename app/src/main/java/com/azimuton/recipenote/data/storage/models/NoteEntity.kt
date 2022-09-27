@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 class NoteEntity(
-//    @PrimaryKey(autoGenerate = true)
-//    val dbnoteEntityid: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val dbnoteEntityid: Int = 0,
     @ColumnInfo
     val dbnoteEntitytitle: String,
     @ColumnInfo
@@ -16,7 +16,7 @@ class NoteEntity(
     val dbnoteEntityimage: String,
 
 )
-{
-    @PrimaryKey(autoGenerate = true)
-    var dbnoteEntityid: Int = 0
-}
+//{
+//    @PrimaryKey(autoGenerate = true)
+//    var dbnoteEntityid: Int = 0
+//}

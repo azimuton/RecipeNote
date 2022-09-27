@@ -7,30 +7,31 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.azimuton.recipenote.R
-import com.azimuton.recipenote.data.repository.SaveDataNoteRepositoryImpl
 import com.azimuton.recipenote.data.storage.room.AppDatabase
-import com.azimuton.recipenote.data.storage.room.NoteStorageRoomImpl
 import com.azimuton.recipenote.domain.models.Note
-import com.azimuton.recipenote.domain.usecase.NoteDeleteUseCase
+import com.azimuton.recipenote.domain.usecase.NoteDelImageUseCase
 import com.azimuton.recipenote.domain.usecase.NoteInsertUseCase
 import com.azimuton.recipenote.presentation.utils.MyIntentConstance
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.android.synthetic.main.activity_edit_note.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
-class EditNoteActivity  : AppCompatActivity(){
+class EditNoteActivity  : AppCompatActivity(), CoroutineScope{
+    private val job = Job()
 
-//    private val userRepository by lazy(LazyThreadSafetyMode.NONE){
-//        SaveDataNoteRepositoryImpl(noteStorage = NoteStorageRoomImpl(noteDatabase.noteDao()))
-//    }
-//    private val noteInsertUseCase by lazy(LazyThreadSafetyMode.NONE){
-//        NoteInsertUseCase(saveDataNoteRepository = userRepository)
-//    }
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     @Inject
     lateinit var noteInsertUseCase: NoteInsertUseCase
+    @Inject
+    lateinit var noteDelImageUseCase : NoteDelImageUseCase
     lateinit var noteDatabase: AppDatabase
     private val Pick_image = 1
     var tempImageUri = "empty"
@@ -49,11 +50,12 @@ class EditNoteActivity  : AppCompatActivity(){
                 val title: String = etEditNoteTitle.text.toString()
                 val content: String = etEditNoteContent.text.toString()
                 val imageUri = tempImageUri
-                val note =
-                    Note(dbnotetitle = title, dbnotecontent = content, dbnoteimage = imageUri)
+                val note = Note(dbnotetitle = title, dbnotecontent = content, dbnoteimage = imageUri)
+                CoroutineScope(Dispatchers.IO).launch {
+                    noteInsertUseCase.execute(note)
+                }
+//                noteInsertUseCase.execute(note)
                 Toast.makeText(this, "Ваш рецепт записан !", Toast.LENGTH_LONG).show()
-                noteInsertUseCase.execute(note)
-
                 val intent = Intent(this, NoteActivity::class.java)
                 startActivity(intent)
                 overridePendingTransition(0, R.anim.open_activity)
@@ -78,7 +80,8 @@ class EditNoteActivity  : AppCompatActivity(){
         fabAddGalleryEditNote.visibility = View.GONE
     }
     private fun clickDeleteImage(){
-        noteDatabase.noteDao().delImage()
+        //noteDatabase.noteDao().delImage()
+        noteDelImageUseCase.execute()
         cvEditNote.visibility = View.GONE
         fabAddGalleryEditNote.visibility = View.VISIBLE
     }
